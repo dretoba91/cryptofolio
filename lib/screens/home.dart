@@ -29,83 +29,20 @@ class Home extends StatelessWidget {
           ),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Expanded(
-                flex: 4,
+                flex: 6,
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Expanded(
                       child: Column(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           const Text(
-                            'latest rates',
-                            style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                              fontSize: 19,
-                              color: Colors.grey,
-                            ),
-                          ),
-                          SizedBox(
-                            height: 30,
-                          ),
-                          Row(
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              NeophCard(
-                                width: ScreenUtils.screenWidth * 0.30,
-                                height: 80,
-                              ),
-                              NeophCard(
-                                width: ScreenUtils.screenWidth * 0.30,
-                                height: 80,
-                              ),
-                              NeophCard(
-                                width: ScreenUtils.screenWidth * 0.30,
-                                height: 80,
-                              ),
-                            ],
-                          ),
-                          Row(
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              NeophCard(
-                                width: ScreenUtils.screenWidth * 0.30,
-                                height: 80,
-                              ),
-                              NeophCard(
-                                width: ScreenUtils.screenWidth * 0.30,
-                                height: 80,
-                              ),
-                              NeophCard(
-                                width: ScreenUtils.screenWidth * 0.30,
-                                height: 80,
-                              ),
-                            ],
-                          )
-                        ],
-                      ),
-                    )
-                  ],
-                ),
-              ),
-              Expanded(
-                flex: 4,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Expanded(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          const Text(
-                            'recent assets',
+                            'Watchlist',
                             style: TextStyle(
                               fontWeight: FontWeight.bold,
                               fontSize: 19,
@@ -113,7 +50,67 @@ class Home extends StatelessWidget {
                             ),
                           ),
                           const SizedBox(
-                            height: 30,
+                            height: 20,
+                          ),
+                          Row(
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              NeophCard(
+                                width: ScreenUtils.screenWidth * 0.30,
+                                height: 80,
+                              ),
+                              NeophCard(
+                                width: ScreenUtils.screenWidth * 0.30,
+                                height: 80,
+                              ),
+                              NeophCard(
+                                width: ScreenUtils.screenWidth * 0.30,
+                                height: 80,
+                              ),
+                            ],
+                          ),
+                          Row(
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              NeophCard(
+                                width: ScreenUtils.screenWidth * 0.30,
+                                height: 80,
+                              ),
+                              NeophCard(
+                                width: ScreenUtils.screenWidth * 0.30,
+                                height: 80,
+                              ),
+                              NeophCard(
+                                width: ScreenUtils.screenWidth * 0.30,
+                                height: 80,
+                              ),
+                            ],
+                          )
+                        ],
+                      ),
+                    )
+                  ],
+                ),
+              ),
+              Expanded(
+                flex: 4,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          const Text(
+                            'Recent assets',
+                            style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontSize: 19,
+                              color: Colors.grey,
+                            ),
                           ),
                           Row(
                             crossAxisAlignment: CrossAxisAlignment.center,
@@ -140,35 +137,62 @@ class Home extends StatelessWidget {
                 ),
               ),
               Expanded(
-                flex: 2,
-                child: Row(
-                  crossAxisAlignment: CrossAxisAlignment.start,
+                flex: 4,
+                child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    NeophCard(
-                      width: ScreenUtils.screenWidth * 0.40,
-                      height: 120,
-                    ),
-                    TextButton(
-                      onPressed: () {},
-                      child: const Text(
-                        'see all your assets',
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 16,
-                          color: Colors.grey,
+                    Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        NeophCard(
+                          width: ScreenUtils.screenWidth * 0.40,
+                          height: 120,
                         ),
-                      ),
+                        TextButton(
+                          onPressed: () {},
+                          child: const Text(
+                            'see all assets',
+                            style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontSize: 16,
+                              color: Color(0xFFC1E8FF),
+                            ),
+                          ),
+                        ),
+                      ],
                     ),
                   ],
                 ),
               ),
-              const Expanded(
+              Expanded(
                 flex: 2,
                 child: Row(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   mainAxisAlignment: MainAxisAlignment.center,
-                  children: [],
+                  children: [
+                    ElevatedButton(
+                        onPressed: () {
+                          // Add your button press logic here
+                        },
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: const Color(
+                              0xFFC1E8FF), // Set the background color
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(
+                                8), // Set the corner radius
+                          ),
+                        ),
+                        child: const Text(
+                          "Add Transaction",
+                          style: TextStyle(
+                            color: Colors.black,
+                            fontSize: 16,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ))
+                  ],
                 ),
               ),
             ],
