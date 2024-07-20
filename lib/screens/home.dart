@@ -41,12 +41,12 @@ class Home extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text(
+                          const Text(
                             'latest rates',
                             style: TextStyle(
                               fontWeight: FontWeight.bold,
                               fontSize: 19,
-                              color: Colors.white,
+                              color: Colors.grey,
                             ),
                           ),
                           SizedBox(
@@ -104,15 +104,15 @@ class Home extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Text(
+                          const Text(
                             'recent assets',
                             style: TextStyle(
                               fontWeight: FontWeight.bold,
                               fontSize: 19,
-                              color: Colors.white,
+                              color: Colors.grey,
                             ),
                           ),
-                          SizedBox(
+                          const SizedBox(
                             height: 30,
                           ),
                           Row(
@@ -141,34 +141,34 @@ class Home extends StatelessWidget {
               ),
               Expanded(
                 flex: 2,
-                child: Container(
-                  color: Colors.yellow,
-                  child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      NeophCard(
-                        width: ScreenUtils.screenWidth * 0.40,
-                        height: 150,
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    NeophCard(
+                      width: ScreenUtils.screenWidth * 0.40,
+                      height: 120,
+                    ),
+                    TextButton(
+                      onPressed: () {},
+                      child: const Text(
+                        'see all your assets',
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 16,
+                          color: Colors.grey,
+                        ),
                       ),
-                    ],
-                  ),
+                    ),
+                  ],
                 ),
               ),
-              Expanded(
+              const Expanded(
                 flex: 2,
-                child: Container(
-                  color: Colors.pink,
-                  child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      NeophCard(
-                        width: ScreenUtils.screenWidth * 0.40,
-                        height: 100,
-                      ),
-                    ],
-                  ),
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [],
                 ),
               ),
             ],
