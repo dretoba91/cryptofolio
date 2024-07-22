@@ -1,8 +1,10 @@
 import 'dart:developer';
 
 import 'package:cryptofolio/helpers/constants.dart';
+import 'package:cryptofolio/widgets/add_assets_bottomsheet.dart';
 import 'package:cryptofolio/widgets/card.dart';
 import 'package:flutter/material.dart';
+import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 
 class Home extends StatelessWidget {
   const Home({super.key});
@@ -175,6 +177,15 @@ class Home extends StatelessWidget {
                     ElevatedButton(
                         onPressed: () {
                           // Add your button press logic here
+                          showCupertinoModalBottomSheet(
+                            context: context,
+                            topRadius: const Radius.circular(24),
+                            isDismissible: true,
+                            enableDrag: true,
+                            builder: (context) => Material(
+                              child: AddAssetsBottomsheet(),
+                            ),
+                          );
                         },
                         style: ElevatedButton.styleFrom(
                           backgroundColor: const Color(
