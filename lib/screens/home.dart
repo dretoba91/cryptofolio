@@ -21,6 +21,7 @@ class Home extends StatelessWidget {
         ),
         backgroundColor: const Color(0xFF5483B3),
       ),
+      resizeToAvoidBottomInset: false,
       body: SafeArea(
         child: Container(
           width: ScreenUtils.screenWidth,
