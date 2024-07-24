@@ -1,6 +1,7 @@
 import 'dart:developer';
 
 import 'package:cryptofolio/controller/add_assets_controller.dart';
+import 'package:cryptofolio/controller/assets_controlller.dart';
 import 'package:cryptofolio/helpers/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -67,7 +68,6 @@ class _AddAssetsBottomsheetState extends State<AddAssetsBottomsheet>
     }
   }
 
-
   @override
   Widget build(BuildContext context) {
     ScreenUtils.init(context);
@@ -131,28 +131,54 @@ class _AddAssetsBottomsheetState extends State<AddAssetsBottomsheet>
                         const SizedBox(
                           height: 80,
                         ),
-                        TextField(
-                          controller: textController,
-                          focusNode: _focusNode,
-                          style: const TextStyle(color: Colors.white),
-                          decoration: const InputDecoration(
-                            hintText: 'Enter some value',
-                            hintStyle: TextStyle(
-                              color: Colors.white,
-                            ),
-                            border: OutlineInputBorder(),
-                          ),
-                          keyboardType: TextInputType.number,
-                          onChanged: (value) {
-                            // Handle text changes
-                            addAssetsController.assetValue.value =
-                                double.parse(value);
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            Expanded(
+                              flex: 2,
+                              child: TextField(
+                                controller: textController,
+                                focusNode: _focusNode,
+                                style: const TextStyle(color: Colors.white),
+                                decoration: const InputDecoration(
+                                  hintText: 'Enter some value',
+                                  hintStyle: TextStyle(
+                                    color: Colors.white,
+                                  ),
+                                  border: OutlineInputBorder(),
+                                ),
+                                keyboardType: TextInputType.number,
+                                onChanged: (value) {
+                                  // Handle text changes
+                                  addAssetsController.assetValue.value =
+                                      double.parse(value);
 
-                            log("inside text field ${textController.text}");
-                          },
-                          onSubmitted: (value) {
-                            // Handle form submission
-                          },
+                                  log("inside text field ${textController.text}");
+                                },
+                                onSubmitted: (value) {
+                                  // Handle form submission
+                                },
+                              ),
+                            ),
+                            const SizedBox(
+                              width: 40,
+                            ),
+                            GestureDetector(
+                              onTap: () {
+                                AssetsController newAsset = Get.find();
+                                newAsset.addNewAsset(
+                                    addAssetsController.selectedCrypto.value,
+                                    addAssetsController.assetValue.value);
+                                Get.back();
+                              },
+                              child: const Icon(
+                                Icons.send_outlined,
+                                size: 40,
+                                color: Colors.white,
+                              ),
+                            )
+                          ],
                         ),
                         SizedBox(
                           height: 250,

@@ -7,6 +7,7 @@ import 'package:get/get.dart';
 void main() async {
   await dotenv.load(fileName: ".env");
   await registerServices();
+  await registerControllers();
   runApp(const MyApp());
 }
 
@@ -24,7 +25,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.blueGrey),
         useMaterial3: true,
       ),
-      home: const Home(),
+      home: Home(),
     );
   }
 }
