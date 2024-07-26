@@ -12,6 +12,7 @@ class AddAssetsController extends GetxController {
   RxString selectedCrypto = "".obs;
   RxDouble assetValue = 0.0.obs;
   RxList<CryptoCurrenciesData> coinData = <CryptoCurrenciesData>[].obs;
+  RxList<Map<String, dynamic>> watchList = <Map<String, dynamic>>[].obs;
 
   @override
   void onInit() {
@@ -29,15 +30,34 @@ class AddAssetsController extends GetxController {
     currenciesListAPIResponse.cryptodata?.forEach(
       (currency) {
         cryptoCurrency.add(currency.name!);
+        watchList.add({
+          'name': currency.name,
+          'price': currency.values?.uSD?.price?.toDouble() ?? 0,
+        });
       },
     );
     coinData.value = currenciesListAPIResponse.cryptodata ?? [];
     selectedCrypto.value = cryptoCurrency.first;
-    log("==> $cryptoCurrency");
+    // log("watch ==> $watchList");
     log("==============================================================");
     isLoading.value = false;
-    log("==> ${coinData}");
+    // log("==> coin ${coinData}");
+    _generateAndSortPrices();
     isLoading.value = false;
     isLoading.value = false;
+  }
+
+  void _generateAndSortPrices() {
+    // Sort the prices in descending order
+    // prices.sort((a, b) => b.compareTo(a));
+    watchList.sort(
+      (a, b) => b['price'].compareTo(a['price']),
+    );
+    watchList.value = watchList.take(12).toList();
+
+    log("prices ==> $watchList");
+
+    // Notify the framework that the state has changed
+    // setState(() {});
   }
 }

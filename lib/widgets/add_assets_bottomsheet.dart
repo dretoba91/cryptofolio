@@ -151,6 +151,9 @@ class _AddAssetsBottomsheetState extends State<AddAssetsBottomsheet>
                                 keyboardType: TextInputType.number,
                                 onChanged: (value) {
                                   // Handle text changes
+                                  if (value == '') {
+                                    return;
+                                  }
                                   addAssetsController.assetValue.value =
                                       double.parse(value);
 

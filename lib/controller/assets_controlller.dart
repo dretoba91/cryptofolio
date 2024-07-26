@@ -21,7 +21,6 @@ class AssetsController extends GetxController {
       name: name,
       amount: amount,
     ));
-    print("new asset: ${addedAssets}");
   }
 
   double getTotalAssets() {
@@ -42,6 +41,7 @@ class AssetsController extends GetxController {
 
   double getAssetPrice(String assetName) {
     CryptoCurrenciesData? data = getCoinData(assetName);
+    log("data : ${data?.values?.uSD}");
     return data?.values?.uSD?.price?.toDouble() ?? 0;
   }
 
