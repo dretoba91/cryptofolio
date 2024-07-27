@@ -46,10 +46,10 @@ class _AddAssetsBottomsheetState extends State<AddAssetsBottomsheet>
   }
 
   void _scrollToFocusedInput() {
-    Future.delayed(Duration(milliseconds: 300), () {
+    Future.delayed(const Duration(milliseconds: 300), () {
       _scrollController.animateTo(
         _scrollController.position.maxScrollExtent,
-        duration: Duration(milliseconds: 300),
+        duration: const Duration(milliseconds: 300),
         curve: Curves.easeInOut,
       );
     });
@@ -183,7 +183,7 @@ class _AddAssetsBottomsheetState extends State<AddAssetsBottomsheet>
                             )
                           ],
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 250,
                         ),
                       ],

@@ -45,16 +45,23 @@ class RecentAssests extends StatelessWidget {
                   style: const TextStyle(
                     fontSize: 16,
                     fontWeight: FontWeight.w500,
-                    color: Colors.white,
+                    color: Color(0xFFC1E8FF),
                   ),
                 ),
-                subtitle: Text(
-                  'USD: ${assetsController.getAssetPrice(asset.name!).toStringAsFixed(3)}',
-                  style: const TextStyle(
-                    fontSize: 16,
-                    fontWeight: FontWeight.w600,
-                    color: Colors.white,
-                  ),
+                subtitle: Column(
+                  children: [
+                    const SizedBox(
+                      height: 5,
+                    ),
+                    Text(
+                      'USD: ${assetsController.getAssetPrice(asset.name!).toStringAsFixed(3)}',
+                      style: const TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.w600,
+                        color: Colors.white,
+                      ),
+                    ),
+                  ],
                 ),
                 trailing: Text(
                   '${asset.amount}',
