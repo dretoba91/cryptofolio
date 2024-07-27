@@ -47,7 +47,7 @@ class WatchListPage extends StatelessWidget {
             children: [
               NeophCard(
                 height: 200,
-                width: ScreenUtils.screenWidth * 0.95,
+                width: ScreenUtils.screenWidth * 0.70,
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   crossAxisAlignment: CrossAxisAlignment.center,
@@ -61,6 +61,7 @@ class WatchListPage extends StatelessWidget {
                       ),
                     ),
                     Text.rich(
+                      textAlign: TextAlign.center,
                       TextSpan(
                         children: [
                           TextSpan(
@@ -73,82 +74,29 @@ class WatchListPage extends StatelessWidget {
                             ),
                           ),
                           const TextSpan(
-                            text: ' USD',
+                            text: ' USD \n\n',
                             style: TextStyle(
                               fontSize: 18,
                               fontWeight: FontWeight.w600,
                               color: Colors.white,
                             ),
                           ),
+
+                          TextSpan(
+                            text:
+                                '${cryptoCoin.values?.uSD?.percentChange24h} %',
+                            style: TextStyle(
+                              fontSize: 18,
+                              fontWeight: FontWeight.w600,
+                              color:
+                                  cryptoCoin.values!.uSD!.percentChange24h! > 0
+                                      ? Colors.green
+                                      : Colors.red,
+                            ),
+                          ),
                         ],
                       ),
                     ),
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          Flexible(
-                            child: Text.rich(
-                              maxLines: 3,
-                              overflow: TextOverflow.ellipsis,
-                              TextSpan(
-                                children: [
-                                  const TextSpan(
-                                    text: 'marketCap USD \n\n',
-                                    style: TextStyle(
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.w700,
-                                      color: Color(0xFFC1E8FF),
-                                    ),
-                                  ),
-                                  TextSpan(
-                                    text:
-                                        '${cryptoCoin.values?.uSD?.marketCap?.toStringAsFixed(2)}',
-                                    style: const TextStyle(
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.w500,
-                                      color: Colors.white,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ),
-                          const SizedBox(
-                            width: 30,
-                          ),
-                          Flexible(
-                            child: Text.rich(
-                              maxLines: 3,
-                              overflow: TextOverflow.ellipsis,
-                              TextSpan(
-                                children: [
-                                  const TextSpan(
-                                    text: 'volume24h USD \n\n',
-                                    style: TextStyle(
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.w700,
-                                      color: Color(0xFFC1E8FF),
-                                    ),
-                                  ),
-                                  TextSpan(
-                                    text:
-                                        '${cryptoCoin.values?.uSD?.marketCap?.toStringAsFixed(2)}',
-                                    style: const TextStyle(
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.w500,
-                                      color: Colors.white,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    )
                   ],
                 ),
               ),
@@ -157,7 +105,228 @@ class WatchListPage extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   NeophCard(
-                    height: 200,
+                    height: 120,
+                    width: ScreenUtils.screenWidth * 0.40,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        const Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            // Icon(
+                            //   Icons.trending_up_outlined,
+                            //   size: 40,
+                            //   color: Colors.white,
+                            // ),
+                            Text(
+                              'marketCap USD',
+                              style: TextStyle(
+                                fontSize: 16,
+                                fontWeight: FontWeight.w700,
+                                color: Color(0xFFC1E8FF),
+                              ),
+                            ),
+                          ],
+                        ),
+                        Text.rich(
+                          TextSpan(
+                            children: [
+                              TextSpan(
+                                text:
+                                    '${cryptoCoin.values?.uSD?.marketCap?.toStringAsFixed(2)}',
+                                style: const TextStyle(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w500,
+                                  color: Colors.white,
+                                ),
+                              ),
+                            ],
+                          ),
+                        )
+                      ],
+                    ),
+                  ),
+                  NeophCard(
+                    height: 120,
+                    width: ScreenUtils.screenWidth * 0.40,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        const Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            // Icon(
+                            //   Icons.trending_down_outlined,
+                            //   size: 40,
+                            //   color: Colors.white,
+                            // ),
+                            Text(
+                              'volume24h USD',
+                              style: TextStyle(
+                                fontSize: 16,
+                                fontWeight: FontWeight.w700,
+                                color: Color(0xFFC1E8FF),
+                              ),
+                            ),
+                          ],
+                        ),
+                        Text.rich(
+                          TextSpan(
+                            children: [
+                              TextSpan(
+                                text:
+                                    '${cryptoCoin.values?.uSD?.marketCap?.toStringAsFixed(2)} ',
+                                style: const TextStyle(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w500,
+                                  color: Colors.white,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  NeophCard(
+                    height: 180,
+                    width: ScreenUtils.screenWidth * 0.30,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        const Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            Text(
+                              'circulatingSupply',
+                              style: TextStyle(
+                                fontSize: 16,
+                                fontWeight: FontWeight.w700,
+                                color: Color(0xFFC1E8FF),
+                              ),
+                            ),
+                          ],
+                        ),
+                        Text.rich(
+                          textAlign: TextAlign.center,
+                          TextSpan(
+                            children: [
+                              TextSpan(
+                                text:
+                                    '${cryptoCoin.circulatingSupply?.toStringAsFixed(2) ?? 0}',
+                                style: const TextStyle(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w500,
+                                  color: Colors.white,
+                                ),
+                              ),
+                            ],
+                          ),
+                        )
+                      ],
+                    ),
+                  ),
+                  NeophCard(
+                    height: 180,
+                    width: ScreenUtils.screenWidth * 0.30,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        const Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            Text(
+                              'totalSupply',
+                              style: TextStyle(
+                                fontSize: 16,
+                                fontWeight: FontWeight.w700,
+                                color: Color(0xFFC1E8FF),
+                              ),
+                            ),
+                          ],
+                        ),
+                        Text.rich(
+                          textAlign: TextAlign.center,
+                          TextSpan(
+                            children: [
+                              TextSpan(
+                                text:
+                                    '${cryptoCoin.totalSupply?.toStringAsFixed(2) ?? 0}',
+                                style: const TextStyle(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w500,
+                                  color: Colors.white,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  NeophCard(
+                    height: 180,
+                    width: ScreenUtils.screenWidth * 0.30,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        const Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            Text(
+                              'maxSupply',
+                              style: TextStyle(
+                                fontSize: 16,
+                                fontWeight: FontWeight.w700,
+                                color: Color(0xFFC1E8FF),
+                              ),
+                            ),
+                          ],
+                        ),
+                        Text.rich(
+                          textAlign: TextAlign.center,
+                          TextSpan(
+                            children: [
+                              TextSpan(
+                                text:
+                                    '${cryptoCoin.maxSupply?.toStringAsFixed(2) ?? 0}',
+                                style: const TextStyle(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w500,
+                                  color: Colors.white,
+                                ),
+                              ),
+                              
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  NeophCard(
+                    height: 100,
                     width: ScreenUtils.screenWidth * 0.40,
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -209,7 +378,7 @@ class WatchListPage extends StatelessWidget {
                     ),
                   ),
                   NeophCard(
-                    height: 200,
+                    height: 100,
                     width: ScreenUtils.screenWidth * 0.40,
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
