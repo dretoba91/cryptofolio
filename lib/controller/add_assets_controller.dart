@@ -33,6 +33,8 @@ class AddAssetsController extends GetxController {
         watchList.add({
           'name': currency.name,
           'price': currency.values?.uSD?.price?.toDouble() ?? 0,
+          'percentChange24h':
+              currency.values?.uSD?.percentChange24h?.toDouble() ?? 0
         });
       },
     );

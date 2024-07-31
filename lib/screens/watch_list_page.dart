@@ -4,6 +4,7 @@ import 'package:cryptofolio/helpers/constants.dart';
 import 'package:cryptofolio/models/crypto_currencies_data.dart';
 import 'package:cryptofolio/widgets/card.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 
 class WatchListPage extends StatelessWidget {
@@ -130,19 +131,23 @@ class WatchListPage extends StatelessWidget {
                             ),
                           ],
                         ),
-                        Text.rich(
-                          TextSpan(
-                            children: [
-                              TextSpan(
-                                text:
-                                    '${cryptoCoin.values?.uSD?.marketCap?.toStringAsFixed(2)}',
-                                style: const TextStyle(
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.w500,
-                                  color: Colors.white,
+                        Flexible(
+                          child: Text.rich(
+                            textAlign: TextAlign.center,
+                            softWrap: true,
+                            TextSpan(
+                              children: [
+                                TextSpan(
+                                  text:
+                                      '${cryptoCoin.values?.uSD?.marketCap?.toStringAsFixed(2)}',
+                                  style: const TextStyle(
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.w500,
+                                    color: Colors.white,
+                                  ),
                                 ),
-                              ),
-                            ],
+                              ],
+                            ),
                           ),
                         )
                       ],
@@ -174,19 +179,23 @@ class WatchListPage extends StatelessWidget {
                             ),
                           ],
                         ),
-                        Text.rich(
-                          TextSpan(
-                            children: [
-                              TextSpan(
-                                text:
-                                    '${cryptoCoin.values?.uSD?.marketCap?.toStringAsFixed(2)} ',
-                                style: const TextStyle(
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.w500,
-                                  color: Colors.white,
+                        Flexible(
+                          child: Text.rich(
+                            textAlign: TextAlign.center,
+                            softWrap: true,
+                            TextSpan(
+                              children: [
+                                TextSpan(
+                                  text:
+                                      '${cryptoCoin.values?.uSD?.marketCap?.toStringAsFixed(2)} ',
+                                  style: const TextStyle(
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.w500,
+                                    color: Colors.white,
+                                  ),
                                 ),
-                              ),
-                            ],
+                              ],
+                            ),
                           ),
                         ),
                       ],
@@ -209,30 +218,37 @@ class WatchListPage extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
-                            Text(
-                              'circulatingSupply',
-                              style: TextStyle(
-                                fontSize: 16,
-                                fontWeight: FontWeight.w700,
-                                color: Color(0xFFC1E8FF),
+                            Flexible(
+                              child: Text(
+                                'circulatingSupply',
+                                softWrap: true,
+                                textAlign: TextAlign.center,
+                                style: TextStyle(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w700,
+                                  color: Color(0xFFC1E8FF),
+                                ),
                               ),
                             ),
                           ],
                         ),
-                        Text.rich(
-                          textAlign: TextAlign.center,
-                          TextSpan(
-                            children: [
-                              TextSpan(
-                                text:
-                                    '${cryptoCoin.circulatingSupply?.toStringAsFixed(2) ?? 0}',
-                                style: const TextStyle(
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.w500,
-                                  color: Colors.white,
+                        Flexible(
+                          child: Text.rich(
+                            textAlign: TextAlign.center,
+                            softWrap: true,
+                            TextSpan(
+                              children: [
+                                TextSpan(
+                                  text:
+                                      '${cryptoCoin.circulatingSupply?.toStringAsFixed(2) ?? 0}',
+                                  style: const TextStyle(
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.w500,
+                                    color: Colors.white,
+                                  ),
                                 ),
-                              ),
-                            ],
+                              ],
+                            ),
                           ),
                         )
                       ],

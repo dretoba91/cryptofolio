@@ -17,27 +17,29 @@ class RecentAssests extends StatelessWidget {
   Widget build(BuildContext context) {
     ScreenUtils.init(context);
     return SizedBox(
-      height: 105,
+      height: 120,
       width: double.infinity,
       child: ListView.separated(
         scrollDirection: Axis.horizontal,
-        itemCount: assetsController.addedAssets.length,
+        itemCount: 3,
         itemBuilder: (context, index) {
-          AddedAsset asset = assetsController.addedAssets[index];
+          final assetReversed = assetsController.addedAssets.reversed.toList();
+          AddedAsset asset = assetReversed[index];
           log("==> empty: ${assetsController.addedAssets.length}");
 
           return NeophCard(
-            width: ScreenUtils.screenWidth * 0.70,
-            height: 100,
+            width: ScreenUtils.screenWidth * 0.60,
+            height: 120,
             child: Padding(
               padding: const EdgeInsets.symmetric(
-                vertical: 10,
-                horizontal: 10,
+                vertical: 5,
+                horizontal: 5,
               ),
               child: ListTile(
+                isThreeLine: true,
                 leading: Image.network(
                   'https://i.pinimg.com/564x/0c/a8/ea/0ca8ea00471945759158e63736f13fb2.jpg',
-                  height: 40,
+                  height: 50,
                   width: 30,
                 ),
                 title: Text(
@@ -53,12 +55,15 @@ class RecentAssests extends StatelessWidget {
                     const SizedBox(
                       height: 5,
                     ),
-                    Text(
-                      'USD: ${assetsController.getAssetPrice(asset.name!).toStringAsFixed(3)}',
-                      style: const TextStyle(
-                        fontSize: 16,
-                        fontWeight: FontWeight.w600,
-                        color: Colors.white,
+                    Flexible(
+                      child: Text(
+                        'USD: ${assetsController.getAssetPrice(asset.name!).toStringAsFixed(3)}',
+                        softWrap: true,
+                        style: const TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.w600,
+                          color: Colors.white,
+                        ),
                       ),
                     ),
                   ],
@@ -82,49 +87,3 @@ class RecentAssests extends StatelessWidget {
     );
   }
 }
-
-
-
-
-// Row(
-//                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-//                 crossAxisAlignment: CrossAxisAlignment.center,
-//                 children: [
-//                   Expanded(
-//                     child: Column(
-//                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
-//                       crossAxisAlignment: CrossAxisAlignment.center,
-//                       children: [
-//                         // Image.network(
-//                         //   getCryptoImageURL(asset.name!),
-//                         //   height: 1,
-//                         //   width: 1,
-//                         // ),
-//                         const SizedBox(
-//                           child: Text(
-//                             'image',
-//                             style: TextStyle(color: Colors.white),
-//                           ),
-//                         ),
-//                         Text(
-//                           '${asset.name}',
-//                           style: const TextStyle(
-//                             fontSize: 16,
-//                             fontWeight: FontWeight.w500,
-//                             color: Colors.white,
-//                           ),
-//                         ),
-//                       ],
-//                     ),
-//                   ),
-//                   Text(
-//                     'USD: ${assetsController.getAssetPrice(asset.name!).toStringAsFixed(3)}',
-//                     style: const TextStyle(
-//                       fontSize: 16,
-//                       fontWeight: FontWeight.w600,
-//                       color: Colors.white,
-//                     ),
-//                   ),
-//                 ],
-//               ),
-            

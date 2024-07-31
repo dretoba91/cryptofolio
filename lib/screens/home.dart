@@ -42,7 +42,7 @@ class Home extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Expanded(
-                  flex: 8,
+                  flex: 10,
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
@@ -105,8 +105,9 @@ class Home extends StatelessWidget {
                     ],
                   ),
                 ),
+                
                 Expanded(
-                  flex: 4,
+                  flex: 6,
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
@@ -123,28 +124,23 @@ class Home extends StatelessWidget {
                                 color: Colors.grey,
                               ),
                             ),
-                            // Row(
-                            //   crossAxisAlignment: CrossAxisAlignment.center,
-                            //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            //   children: [
-                            //     NeophCard(
-                            //       width: ScreenUtils.screenWidth * 0.30,
-                            //       height: 100,
-                            //     ),
-                            //     NeophCard(
-                            //       width: ScreenUtils.screenWidth * 0.30,
-                            //       height: 100,
-                            //     ),
-                            //     NeophCard(
-                            //       width: ScreenUtils.screenWidth * 0.30,
-                            //       height: 100,
-                            //     ),
-                            //   ],
-                            // )
+                            
                             assetsController.addedAssets.isEmpty
-                                ? NeophCard(
-                                    width: ScreenUtils.screenWidth * 0.30,
-                                    height: 100,
+                                ? Center(
+                                    child: NeophCard(
+                                      width: ScreenUtils.screenWidth * 0.60,
+                                      height: 100,
+                                      child: const Center(
+                                        child: Text(
+                                          'you have zero assets!!. \n try to add an asset.',
+                                          style: TextStyle(
+                                            fontWeight: FontWeight.bold,
+                                            fontSize: 19,
+                                            color: Colors.white,
+                                          ),
+                                        ),
+                                      ),
+                                    ),
                                   )
                                 : RecentAssests(),
                           ],
@@ -165,7 +161,7 @@ class Home extends StatelessWidget {
                         children: [
                           NeophCard(
                             width: ScreenUtils.screenWidth * 0.50,
-                            height: 120,
+                            height: 100,
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                               children: [
@@ -253,7 +249,7 @@ class Home extends StatelessWidget {
                             ),
                           ),
                           child: const Text(
-                            "Add Transaction",
+                            "Add Asset",
                             style: TextStyle(
                               color: Colors.black,
                               fontSize: 16,

@@ -15,10 +15,11 @@ class NeophCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: const Color(0xFF19262A),
+      color: const Color(0xFF19262A),      
       child: Container(
         width: width ?? 150,
-        height: height ?? 150,        
+        height: height ?? 150,
+        padding: const EdgeInsets.all(5.0),      
         decoration: BoxDecoration(
           color: const Color(0xFF19262A),
           borderRadius: BorderRadius.circular(10),

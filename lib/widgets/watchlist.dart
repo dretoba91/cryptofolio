@@ -27,13 +27,13 @@ class Watchlist extends StatelessWidget {
           crossAxisCount: 2,
           mainAxisSpacing: 16.0,
           crossAxisSpacing: 16.0,
-          childAspectRatio: 0.8,
+          childAspectRatio: 0.9,
           shrinkWrap: true,
           physics: const AlwaysScrollableScrollPhysics(),
           children: addAssetsController.watchList.map((item) {
             return NeophCard(
               width: ScreenUtils.screenWidth * 0.30,
-              height: 80,
+              height: 90,
               child: ListTile(
                 title: Text(
                   '${item['name']}',
@@ -48,7 +48,7 @@ class Watchlist extends StatelessWidget {
                 subtitle: Column(
                   children: [
                     const SizedBox(
-                      height: 10,
+                      height: 5,
                     ),
                     Text(
                       '${item['price'].toStringAsFixed(2)}',
@@ -56,6 +56,19 @@ class Watchlist extends StatelessWidget {
                         fontSize: 16,
                         fontWeight: FontWeight.w500,
                         color: Colors.white,
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 5,
+                    ),
+                    Text(
+                      '${item['percentChange24h'].toStringAsFixed(2)} %',
+                      style: TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.w600,
+                        color: item['percentChange24h'] > 0
+                            ? Colors.green
+                            : Colors.red,
                       ),
                     ),
                   ],
