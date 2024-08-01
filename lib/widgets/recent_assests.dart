@@ -1,4 +1,5 @@
 import 'dart:developer';
+import 'dart:math';
 
 import 'package:cryptofolio/controller/assets_controlller.dart';
 import 'package:cryptofolio/helpers/constants.dart';
@@ -21,11 +22,10 @@ class RecentAssests extends StatelessWidget {
       width: double.infinity,
       child: ListView.separated(
         scrollDirection: Axis.horizontal,
-        itemCount: 3,
+        itemCount: min(3, assetsController.addedAssets.length),
         itemBuilder: (context, index) {
           final assetReversed = assetsController.addedAssets.reversed.toList();
-          AddedAsset asset = assetReversed[index];
-          log("==> empty: ${assetsController.addedAssets.length}");
+          AddedAsset asset = assetReversed[index];     
 
           return NeophCard(
             width: ScreenUtils.screenWidth * 0.60,

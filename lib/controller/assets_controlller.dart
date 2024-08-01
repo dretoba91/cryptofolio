@@ -1,9 +1,11 @@
+import 'dart:convert';
 import 'dart:developer';
 
 import 'package:cryptofolio/controller/add_assets_controller.dart';
 import 'package:cryptofolio/models/added_asset.dart';
 import 'package:cryptofolio/models/crypto_currencies_data.dart';
 import 'package:get/get.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class AssetsController extends GetxController {
   RxList<AddedAsset> addedAssets = <AddedAsset>[].obs;
@@ -13,23 +15,46 @@ class AssetsController extends GetxController {
   void onInit() {
     super.onInit();
 
-    // addAssetsController.fetchAssets();
+    _loadSavedAssetsFromStorage();
   }
 
-  void addNewAsset(String name, double amount) {
-    addedAssets.add(AddedAsset(
-      name: name,
-      amount: amount,
-    ));
+  void addNewAsset(String name, double amount) async {
+    final assetPrice = getAssetPrice(name);
+    final usdValue = assetPrice * amount;
+
+    addedAssets.add(
+      AddedAsset(
+        name: name,
+        amount: amount,
+        usdValue: usdValue,
+      ),
+    );
+
+    // saving asset into local storage using share_preference
+    List<String> savedData =
+        addedAssets.map((asset) => jsonEncode(asset)).toList();
+    final prefs = await SharedPreferences.getInstance();
+    prefs.setStringList('added_assets', savedData);
+  }
+
+  // Load saved assets from local storage
+  void _loadSavedAssetsFromStorage() async {
+    final prefs = await SharedPreferences.getInstance();
+    // prefs.clear();
+    List<String>? assets = prefs.getStringList('added_assets');
+
+    if (assets != null) {
+      addedAssets.value = assets
+          .map((asset) => AddedAsset.fromJson(jsonDecode(asset)))
+          .toList();
+    }
   }
 
   double getTotalAssets() {
     if (addAssetsController.coinData.isEmpty) {
-      log("checking if addedAssetsController coin data is empty");
       return 0;
     }
     if (addedAssets.isEmpty) {
-      log("checking if added assets is empty");
       return 0;
     }
     double value = 0;
@@ -41,7 +66,6 @@ class AssetsController extends GetxController {
 
   double getAssetPrice(String assetName) {
     CryptoCurrenciesData? data = getCoinData(assetName);
-    log("data : ${data?.values?.uSD}");
     return data?.values?.uSD?.price?.toDouble() ?? 0;
   }
 

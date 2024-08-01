@@ -14,7 +14,6 @@ class WatchListPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     ScreenUtils.init(context);
-    log('==> ${cryptoCoin.values?.bTC?.price}');
     return Scaffold(
       backgroundColor: const Color(0xFF19262A),
       appBar: AppBar(

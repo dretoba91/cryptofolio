@@ -28,6 +28,7 @@ class _AddAssetsBottomsheetState extends State<AddAssetsBottomsheet>
     super.initState();
     WidgetsBinding.instance.addObserver(this);
     _focusNode.addListener(_onFocusChange);
+    _focusNode.addListener(_onFocusLost);
   }
 
   @override
@@ -45,6 +46,12 @@ class _AddAssetsBottomsheetState extends State<AddAssetsBottomsheet>
     }
   }
 
+  void _onFocusLost() {
+    if (!_focusNode.hasFocus) {
+      _scrollToTop();
+    }
+  }
+
   void _scrollToFocusedInput() {
     Future.delayed(const Duration(milliseconds: 300), () {
       _scrollController.animateTo(
@@ -55,18 +62,28 @@ class _AddAssetsBottomsheetState extends State<AddAssetsBottomsheet>
     });
   }
 
-  @override
-  void didChangeMetrics() {
-    final bottomInset = WidgetsBinding.instance.window.viewInsets.bottom;
-    if (bottomInset != _bottomInset) {
-      setState(() {
-        _bottomInset = bottomInset;
-      });
-      if (_focusNode.hasFocus) {
-        _scrollToFocusedInput();
-      }
-    }
-  }
+  void _scrollToTop() {
+    Future.delayed(const Duration(milliseconds: 300), () {
+      _scrollController.animateTo(
+        0.0,
+        duration: const Duration(milliseconds: 300),
+        curve: Curves.easeInOut,
+      );
+    });
+}
+
+  // @override
+  // void didChangeMetrics() {
+  //   final bottomInset = WidgetsBinding.instance.window.viewInsets.bottom;
+  //   if (bottomInset != _bottomInset) {
+  //     setState(() {
+  //       _bottomInset = bottomInset;
+  //     });
+  //     if (_focusNode.hasFocus) {
+  //       _scrollToFocusedInput();
+  //     }
+  //   }
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -80,7 +97,7 @@ class _AddAssetsBottomsheetState extends State<AddAssetsBottomsheet>
             horizontal: 10,
           ),
           decoration: const BoxDecoration(
-            color: Color(0xFF19262A),
+            color: Color(0xFF273C42),
             borderRadius: BorderRadius.only(
               topLeft: Radius.circular(24),
               topRight: Radius.circular(24),
@@ -108,6 +125,8 @@ class _AddAssetsBottomsheetState extends State<AddAssetsBottomsheet>
                           value: addAssetsController.selectedCrypto.value,
                           dropdownColor: const Color(0xFF5483B3),
                           // itemHeight: 50,
+                          iconSize: 30,
+                          iconEnabledColor: Colors.white,
                           menuMaxHeight: 400,
                           underline: null,
                           borderRadius: BorderRadius.circular(8.0),
@@ -156,8 +175,6 @@ class _AddAssetsBottomsheetState extends State<AddAssetsBottomsheet>
                                   }
                                   addAssetsController.assetValue.value =
                                       double.parse(value);
-
-                                  log("inside text field ${textController.text}");
                                 },
                                 onSubmitted: (value) {
                                   // Handle form submission

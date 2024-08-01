@@ -29,7 +29,6 @@ class ApiService {
       Response response = await dio.get(url);
 
       if (response.statusCode == 200) {
-        // log('api ==> ${response.data}');
         return response.data;
       } else {
         if (response.statusCode == 401) {

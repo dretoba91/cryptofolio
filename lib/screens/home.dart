@@ -2,6 +2,7 @@ import 'dart:developer';
 
 import 'package:cryptofolio/controller/assets_controlller.dart';
 import 'package:cryptofolio/helpers/constants.dart';
+import 'package:cryptofolio/screens/all_assets.dart';
 import 'package:cryptofolio/widgets/add_assets_bottomsheet.dart';
 import 'package:cryptofolio/widgets/card.dart';
 import 'package:cryptofolio/widgets/recent_assests.dart';
@@ -18,14 +19,19 @@ class Home extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     ScreenUtils.init(context);
-    log('${MediaQuery.of(context).size.width}');
     return Scaffold(
       backgroundColor: const Color(0xFF19262A),
       appBar: AppBar(
         title: const Text(
-          'Crypto Home page',
+          'Crypto Assets',
+          style: TextStyle(
+            fontSize: 22,
+            fontWeight: FontWeight.bold,
+            color: Color(0xFFC1E8FF),
+          ),
         ),
-        backgroundColor: const Color(0xFF5483B3),
+        backgroundColor: const Color(0xFF19262A),
+        centerTitle: true,
       ),
       resizeToAvoidBottomInset: false,
       body: SafeArea(
@@ -62,42 +68,6 @@ class Home extends StatelessWidget {
                             const SizedBox(
                               height: 20,
                             ),
-                            // Row(
-                            //   crossAxisAlignment: CrossAxisAlignment.center,
-                            //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            //   children: [
-                            //     NeophCard(
-                            //       width: ScreenUtils.screenWidth * 0.30,
-                            //       height: 80,
-                            //     ),
-                            //     NeophCard(
-                            //       width: ScreenUtils.screenWidth * 0.30,
-                            //       height: 80,
-                            //     ),
-                            //     NeophCard(
-                            //       width: ScreenUtils.screenWidth * 0.30,
-                            //       height: 80,
-                            //     ),
-                            //   ],
-                            // ),
-                            // Row(
-                            //   crossAxisAlignment: CrossAxisAlignment.center,
-                            //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            //   children: [
-                            //     NeophCard(
-                            //       width: ScreenUtils.screenWidth * 0.30,
-                            //       height: 80,
-                            //     ),
-                            //     NeophCard(
-                            //       width: ScreenUtils.screenWidth * 0.30,
-                            //       height: 80,
-                            //     ),
-                            //     NeophCard(
-                            //       width: ScreenUtils.screenWidth * 0.30,
-                            //       height: 80,
-                            //     ),
-                            //   ],
-                            // )
                             Watchlist()
                           ],
                         ),
@@ -105,7 +75,6 @@ class Home extends StatelessWidget {
                     ],
                   ),
                 ),
-                
                 Expanded(
                   flex: 6,
                   child: Row(
@@ -124,7 +93,6 @@ class Home extends StatelessWidget {
                                 color: Colors.grey,
                               ),
                             ),
-                            
                             assetsController.addedAssets.isEmpty
                                 ? Center(
                                     child: NeophCard(
@@ -206,7 +174,11 @@ class Home extends StatelessWidget {
                             ),
                           ),
                           TextButton(
-                            onPressed: () {},
+                            onPressed: () {
+                              Get.to(() {
+                                return AllAssets();
+                              });
+                            },
                             child: const Text(
                               'see all assets',
                               style: TextStyle(
@@ -235,8 +207,16 @@ class Home extends StatelessWidget {
                               topRadius: const Radius.circular(24),
                               isDismissible: true,
                               enableDrag: true,
-                              builder: (context) => Material(
-                                child: AddAssetsBottomsheet(),
+                              builder: (context) => ClipRRect(
+                                borderRadius: const BorderRadius.vertical(
+                                  top: Radius.circular(24),
+                                ),
+                                child: Container(
+                                  color: const Color(0xFFC1E8FF),
+                                  child: Material(
+                                    child: AddAssetsBottomsheet(),
+                                  ),
+                                ),
                               ),
                             );
                           },

@@ -39,11 +39,8 @@ class AddAssetsController extends GetxController {
       },
     );
     coinData.value = currenciesListAPIResponse.cryptodata ?? [];
-    selectedCrypto.value = cryptoCurrency.first;
-    // log("watch ==> $watchList");
-    log("==============================================================");
+    selectedCrypto.value = cryptoCurrency.first;    
     isLoading.value = false;
-    // log("==> coin ${coinData}");
     _generateAndSortPrices();
     isLoading.value = false;
     isLoading.value = false;
@@ -55,11 +52,6 @@ class AddAssetsController extends GetxController {
     watchList.sort(
       (a, b) => b['price'].compareTo(a['price']),
     );
-    watchList.value = watchList.take(12).toList();
-
-    log("prices ==> $watchList");
-
-    // Notify the framework that the state has changed
-    // setState(() {});
+    watchList.value = watchList.take(12).toList();    
   }
 }
