@@ -1,4 +1,4 @@
-import 'dart:developer';
+// ignore_for_file: prefer_const_literals_to_create_immutables, prefer_const_constructors
 
 import 'package:cryptofolio/controller/assets_controlller.dart';
 import 'package:cryptofolio/helpers/constants.dart';

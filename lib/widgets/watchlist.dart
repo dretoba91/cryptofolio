@@ -1,5 +1,4 @@
 import 'dart:developer';
-import 'dart:collection';
 
 import 'package:cryptofolio/controller/add_assets_controller.dart';
 import 'package:cryptofolio/controller/assets_controlller.dart';
@@ -25,10 +24,8 @@ class _WatchlistState extends State<Watchlist> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     controller.addListener(handleScrollController);
-    log("watchlist: ${addAssetsController.watchList}");
   }
 
   void handleScrollController() {
@@ -37,11 +34,11 @@ class _WatchlistState extends State<Watchlist> {
 
   @override
   void dispose() {
-    // TODO: implement dispose
     super.dispose();
     controller.removeListener(handleScrollController);
   }
 
+  // calculate value for the opacity
   double calculateOpacity(double offset, int index, double width) {
     final itemSize = width * 0.1;
     final double viewportStart = offset;
@@ -53,15 +50,12 @@ class _WatchlistState extends State<Watchlist> {
     if (itemStart >= viewportStart && itemEnd <= viewportEnd) {
       // Item is fully visible
       opacity = 1.0;
-      log("fully visible: $opacity");
     } else if (itemStart > viewportStart && itemStart <= viewportEnd) {
       // Item is partially visible from the start
       opacity = (viewportEnd - itemStart) / itemSize;
-      log("partially visible from the start: $opacity");
     } else if (itemEnd > viewportStart && itemEnd <= viewportEnd) {
       // Item is partially visible from the end
       opacity = (itemEnd - viewportStart) / itemSize;
-      log("partially visible from the end: $opacity");
     }
     return opacity;
   }
@@ -88,8 +82,6 @@ class _WatchlistState extends State<Watchlist> {
           children: addAssetsController.watchList
               .asMap()
               .map((index, item) {
-                // log("index: $index");
-                // log("index: $item");
                 final double opacity = calculateOpacity(
                     controller.offset, index, ScreenUtils.screenWidth);
                 return MapEntry(
